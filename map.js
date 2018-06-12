@@ -20,18 +20,27 @@ const map = (objectArr, operation) => {
 
 
 
+    // First attempt
 
-    if (Array.isArray(objectArr)) {
-        for (let item of objectArr) {
-            arr.push(operation(item))
-        }
-    } else {
-        for (let key in objectArr) {
-            if(objectArr){
-                arr.push(operation(objectArr[key]))
-            }
-        }
-    }
+    // if (Array.isArray(objectArr)) {
+    //     for (let item of objectArr) {
+    //         arr.push(operation(item))
+    //     }
+    // } else {
+    //     for (let key in objectArr) {
+    //         if(objectArr){
+    //             arr.push(operation(objectArr[key]))
+    //         }
+    //     }
+    // }
+
+    // short version
+    
+     for (let key in objectArr) {
+         if (objectArr) {
+             arr.push(operation(objectArr[key]))
+         }
+     }
     return arr
 }
 
