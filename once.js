@@ -19,11 +19,10 @@ const once = (func) => {
     let result;
     return function () {
         if (func) {
-            result = func();
-            
+            result = func();           
             func = null;
         }
-        
+
         return result
     }
 }
@@ -43,6 +42,7 @@ describe('Once', () => {
             return ++total;
         }
 
+        const countOnce = once(count);
         const countOnce = once(count);
         assert.equal(countOnce(), 1);
         assert.equal(countOnce(), 1);

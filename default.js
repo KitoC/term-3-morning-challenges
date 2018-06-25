@@ -10,9 +10,11 @@ defaults(iceCream, {flavor: "vanilla", sprinkles: "lots"});
 
 // Your code here!
 const defaults = (object, defaults) => {
-  for(d in defaults){
-    if(object[d] === undefined){
-      object[d] = defaults[d]
+  for(key in defaults){
+    if(defaults.hasOwnProperty(key)){
+      if(object[key] === undefined){
+        object[key] = defaults[key]
+      }
     }
   }
   return object
@@ -51,3 +53,26 @@ describe('Defaults', () => {
     assert.deepEqual(result, expected);
   })
 });
+
+
+function Person() {
+}
+Person.prototype.age = 99;
+
+
+// ********************
+var scott = new Person();
+scott.name = 'scott';
+
+for (var key in scott) {
+  console.log(key)
+}
+
+// ^ Oops! We see age from prototype!
+
+// Better:
+// for (var key in scott) {
+//   if (scott.hasOwnProperty(key)) {
+//     console.log(key)
+//   }
+// }
