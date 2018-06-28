@@ -12,12 +12,22 @@ greetAfter()
 => undefined
 greetAfter()
 => "Hello!"
-    * /
+    */
 
 // Your code here!
-const after = () => {
+const after = ((num, greet) => {
+  let count = num
+  console.log(num)
+  if (count === 0) {
+     return greet()
+  } else {
+      return () => {
+          count --  
+          return count
+        }
+  }
 
-}
+})()
 
 
 // Check your solution by running these tests: mocha *this_filename*
