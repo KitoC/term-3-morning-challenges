@@ -11,7 +11,23 @@ indexBy(stooges, 'age');
 */
 
 // Your code here!
-const indexBy = () => {
+const indexBy = (list, prop) => {
+    
+   let indexed = {}
+   for (item of list) {
+       if (!indexed[item[prop]]) {
+           indexed[item[prop]] = item
+       } else {
+           let existing = indexed[item[prop]]
+           if (!Array.isArray(indexed[item[prop]])){
+               indexed[item[prop]] = []
+               indexed[item[prop]].push(existing)
+           }
+           indexed[item[prop]].push(item)
+       }
+   }
+   return indexed
+    
 }
 
 // Check your solution by running these tests: mocha *this_filename*
@@ -40,7 +56,7 @@ describe('IndexBy', () => {
 
 // Want to try Beat Mode? Replace xdescribe with describe :)
 // Beast mode: handle duplicate keys (build an array)
-xdescribe('I woke up in beast mode:', () => {
+describe('I woke up in beast mode:', () => {
     it('creates an array for duplicate keys', () => {
         const stooges = [{ name: 'moe', age: 40 }, { name: 'larry', age: 50 }, { name: 'kanye', age: 40 }];
         let result = indexBy(stooges, 'age');
